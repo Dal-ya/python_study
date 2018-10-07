@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}index{% endblock %}
+
+{% block body %}
+
+<div>index.html</div>
+
+<div class="container">
+    <div class="row show-grid">
+        <div class="row">
+        <div class="col-md-8">
+            {% for article in article_list %}
+            <h3>{{ article.title }} ({{ article.view_count}}) <span class="label label-default">{{ article.pub_date}}</span></h3>
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+        test
+        </div>
+        </div>
+    </div>
+</div>
+<i class="fa fa-camera-retro"></i> fa-camera-retro
+<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+<span class="sr-only">Loading...</span>
+
+{% endblock %}
+
+
+
+
+
+
+
+
