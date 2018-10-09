@@ -15,11 +15,28 @@
         <div class="row">
         <div class="col-sm-8 blog-main">
             <div class="blog-post">
-                
                 <h2 class="blog-post-title">{{ article.title }}</h2>
                 <p class="blog-post-meta">{{ article.pub_date}}</p>
                 <p>{{ article.contents }}</p>
-              
+            </div>
+            <div>
+                {% for comment in comment_list %}
+                    <div>
+                        <p>username : {{ comment.username }}</p>
+                        <p>comment : {{ comment.comment }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <hr>
+            <p>댓글란</p>
+            <div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="username" placeholder="username"/><br/>
+                    <input type="text" name="comment" placeholder="comment"/><br/>
+                    <input type="submit">
+                </form>
             </div>
         </div>
         <div class="col-md-4">

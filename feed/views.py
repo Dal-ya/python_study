@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.utils import timezone
 #from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from feed.models import Article, Comment, HashTag
 
 
@@ -37,11 +39,30 @@ def index(request):
 
 
 def detail(request, article_id):
+
     article = Article.objects.get(id=article_id)
+    comment_list = Comment.objects.filter(article__id=article_id)
     hashtag_list = HashTag.objects.all()
     ctx = {
         "article" : article,
+        "comment_list" : comment_list,
         "hashtag_list" : hashtag_list,
     }
+    
+    if request.method == 'GET':
+        pass
+    elif request.method == 'POST':
+        username = request.POST.get("username")
+        comment = request.POST.get("comment")
+
+        Comment.objects.create(
+            article = article,
+            username = username,
+            comment = comment,
+            cmt_date = timezone.now(),
+        )
+    
+        return HttpResponseRedirect("{0}".format(article_id))
+
 
     return render(request, "detail.html", ctx)
