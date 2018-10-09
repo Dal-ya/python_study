@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div>index.html</div>
+<div>detail.html</div>
 {% include "navbar.html" %}
 <div class="container">
 <div class="blog-header">
@@ -15,30 +15,19 @@
         <div class="row">
         <div class="col-sm-8 blog-main">
             <div class="blog-post">
-                {% for article in article_list %}
-                <h2 class="blog-post-title">
-                    <a href="{{ article.id }}">
-                    {{ article.title }} 
-                    </a>
-                </h2>
+                
+                <h2 class="blog-post-title">{{ article.title }}</h2>
                 <p class="blog-post-meta">{{ article.pub_date}}</p>
                 <p>{{ article.contents }}</p>
-                {% endfor %}
+              
             </div>
         </div>
         <div class="col-md-4">
             <div class="sidebar-module">
-                <h4>Category</h4>
-                <li><a href="/feed">All</a></li>
-                {% for actual, category in category_list %}
-                <li><a href="?category={{ actual }}">{{ category }}</a></li>
-                {% endfor %}
-            </div>
-            <div class="sidebar-module">
                 <h4>HashTag</h4>
                 <ol class="list-unstyled">
                     {% for hashtag in hashtag_list %}
-                    <li><a href="?hashtag={{ hashtag }}">#{{ hashtag }}</a></li>
+                    <li>#{{ hashtag.name }}</li>
                     {% endfor %}
                 </ol>
             </div>
